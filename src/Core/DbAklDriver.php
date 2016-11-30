@@ -9,6 +9,8 @@
     namespace DbAkl\Core;
 
 
+    use DbAkl\Driver\DbAklConnectionResource;
+
     interface DbAklDriver
     {
 
@@ -17,21 +19,28 @@
 
         public function getMetaData ($key);
 
-        public function isConnected();
+        public function isConnected(DbAklConnectionResource $con);
 
-        public function connect();
-
-
-        public function escape (string $input) : string;
+        public function connect(DbAklConnectionResource $con);
 
 
-        public function begin ();
+        public function escape (DbAklConnectionResource $con, string $input) : string;
 
-        public function commit();
 
-        public function rollback();
+        public function load(DbAklConnectionResource $con, $table, array $condition, $castObj=null) : mixed;
 
-        public function query();
+        public function insert (DbAklConnectionResource $con, $table, $data);
+
+        public function update (DbAklConnectionResource $con, $table, $data, array $condition);
+
+        public function query(DbAklConnectionResource $con, $sql);
+
+        public function begin (DbAklConnectionResource $con);
+
+        public function commit(DbAklConnectionResource $con);
+
+        public function rollback(DbAklConnectionResource $con);
+
 
         public function queryAsync();
 
