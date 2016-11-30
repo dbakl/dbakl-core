@@ -10,8 +10,8 @@
     </tstamp>
 
 
-    <target name="composer update">
+    <target name="composer update --prefer-source">
         <!-- Phing hat ein eigenes PHPUNit-Klasse: Aber: Process-isolation klappt nicht. D.h. der Build von Libraries schlägt fehl -->
-        <exec dir="." logoutput="true" checkreturn="true" command="composer update"/>
+        <exec dir="." logoutput="true" checkreturn="true" command="composer update --prefer-source"/>
     </target>
 </project>
